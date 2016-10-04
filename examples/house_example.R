@@ -7,7 +7,7 @@
 library(MASS)
 
 # Load housing data from text file
-df <- read.table("/Users/lester/BISC577/examples/house_price.txt")
+df <- read.table("/Users/lester/BISC481/examples/house_price.txt")
 
 # Define features and response value
 x <- data.matrix( df[1:5] )
@@ -18,7 +18,7 @@ theta <- ginv(t(x) %*% x) %*% t(x) %*% y
 theta
 
 # Predict the response values for testing data
-df2 <- read.table("/Users/lester/BISC577/examples/house_price_testing.txt")
+df2 <- read.table("/Users/lester/BISC481/examples/house_price_testing.txt")
 x_testing <- data.matrix( df2[1:5] )
 y_testing <- data.matrix( df2[6] )
 
