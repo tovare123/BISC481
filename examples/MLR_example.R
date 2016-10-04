@@ -18,7 +18,7 @@ library(DNAshapeR)
 library(caret)
 
 ## Predict DNA shapes
-fn_fasta <- "/Users/lester/BISC577/examples/SELEX_ScrWT.fa"
+fn_fasta <- "/Users/lester/BISC481/examples/SELEX_ScrWT.fa"
 pred <- getShape(fn_fasta)
 
 ## Encode feature vectors
@@ -28,7 +28,7 @@ head(featureVector)
 
 ## Build MLR model by using Caret
 # Data preparation
-fn_exp <- "/Users/lester/BISC577/examples/SELEX_ScrWT.txt"
+fn_exp <- "/Users/lester/BISC481/examples/SELEX_ScrWT.txt"
 exp_data <- read.table(fn_exp)
 df <- data.frame(affinity=exp_data$V2, featureVector)
 
