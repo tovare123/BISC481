@@ -23,7 +23,7 @@ library(ROCR)
 
 ## Prepare data
 # Predict DNA shapes
-fn_fasta <- "/Users/lester/BISC577/examples/SELEX_ScrWT.fa"
+fn_fasta <- "/Users/lester/BISC481/examples/SELEX_ScrWT.fa"
 pred <- getShape(fn_fasta)
 featureType <- c("1-mer", "1-shape")
 featureVector <- encodeSeqShape(fn_fasta, pred, featureType)
