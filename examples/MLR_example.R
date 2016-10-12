@@ -1,5 +1,5 @@
 ######################################
-# 01.10.2016
+# 12.10.2016
 # Multiple Linear Regression (MLR) example
 # BISC 481
 ######################################
@@ -16,9 +16,10 @@ install.packages("caret")
 ## Initialization
 library(DNAshapeR)
 library(caret)
+workingPath <- "/Users/lester/GitHub/gcPBM/"
 
 ## Predict DNA shapes
-fn_fasta <- "/Users/lester/BISC481/examples/SELEX_ScrWT.fa"
+fn_fasta <- paste0(workingPath, "Mad.txt.fa")
 pred <- getShape(fn_fasta)
 
 ## Encode feature vectors
@@ -28,7 +29,7 @@ head(featureVector)
 
 ## Build MLR model by using Caret
 # Data preparation
-fn_exp <- "/Users/lester/BISC481/examples/SELEX_ScrWT.txt"
+fn_exp <- paste0(workingPath, "Mad.txt")
 exp_data <- read.table(fn_exp)
 df <- data.frame(affinity=exp_data$V2, featureVector)
 
