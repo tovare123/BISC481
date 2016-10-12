@@ -10,6 +10,9 @@ biocLite()
 biocLite("AnnotationHub")
 biocLite("GenomicRanges")
 biocLite("BSgenome.Mmusculus.UCSC.mm10")
+install.packages("caret")
+install.packages("e1071")
+install.packages("ROCR")
 
 
 ## Initialization
@@ -17,12 +20,14 @@ library(DNAshapeR)
 library(AnnotationHub)
 library(BSgenome.Mmusculus.UCSC.mm10)
 library(GenomicRanges)
+library(caret)
+library(ROCR)
 
 
 ## Data retreive
 seqLength <- 30 #500
 sampleSize <- 2000 #42045
-workingPath <- "/Users/lester/GitHub/BISC481/CTCF/"
+workingPath <- "/Users/test/BISC481/CTCF/"
 
 # Bound (ChIP-seq)
 ah <- AnnotationHub()
@@ -77,7 +82,7 @@ exp_data <- rbind(boundTxt, nonboundTxt)
 
 
 ## DNAshapeR prediction
-pred <- getShape(paste0(workingPath,"ctcf.fa"))
+pred <- getShape(paste0(workingPath, "ctcf.fa"))
 
 
 ## Encode feature vectors

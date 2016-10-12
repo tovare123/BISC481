@@ -5,8 +5,8 @@
 ######################################
 
 ## Install and initialize packages
-install.packages(ggplot2)
-install.packages(grid)
+install.packages("ggplot2")
+install.packages("grid")
 library(ggplot2)
 library(grid)
 
@@ -30,7 +30,7 @@ data2 <- c(0.8, 0.85)
 
 ## Ploting
 ggplot() +
-  geom_point(aes(x = M1, y = M2), data = df1, color = "red", size=1) +
+  geom_point(aes(x = data1, y = data2), color = "red", size=1) +
   geom_abline(slope=1) + geom_vline(xintercept=0) + geom_hline(yintercept=0) +
   coord_fixed(ratio = 1, xlim = c(0,1), ylim = c(0,1)) +
   scale_x_continuous(expand = c(0, 0)) + scale_y_continuous(expand = c(0, 0)) +
