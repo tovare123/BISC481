@@ -37,7 +37,7 @@ pred <- getShape(paste0(workingPath, "ctcf.fa"))
 
 
 ## Encode feature vectors
-featureType <- c("1-mer")
+featureType <- c("1-mer", "1-shape")
 featureVector <- encodeSeqShape(paste0(workingPath, "ctcf.fa"), pred, featureType)
 df <- data.frame(isBound = exp_data$isBound, featureVector)
 
