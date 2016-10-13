@@ -8,12 +8,14 @@
 install.packages("caret")
 install.packages("e1071")
 install.packages("ROCR")
+biocLite("Biostrings")
 
 
 ## Initialization
 library(DNAshapeR)
 library(caret)
 library(ROCR)
+library(biostrings)
 workingPath <- "/Users/test/Downloads/BISC481/CTCF/"
 
 ## Generate data for the classifcation (assign Y to bound and N to non-bound)
