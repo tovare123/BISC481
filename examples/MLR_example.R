@@ -16,7 +16,7 @@ install.packages("caret")
 ## Initialization
 library(DNAshapeR)
 library(caret)
-workingPath <- "/Users/test/BISC481/gcPBM/"
+workingPath <- "/Users/test/Downloads/BISC481/gcPBM/"
 
 ## Predict DNA shapes
 fn_fasta <- paste0(workingPath, "Mad.txt.fa")
@@ -45,4 +45,4 @@ summary(model)
 model2 <- train(affinity~., data = df, trControl=trainControl, 
                method = "glmnet", tuneGrid = data.frame(alpha = 0, lambda = c(2^c(-15:15))))
 model2
-model2$results$Rsquared[1]
+result <- model2$results$Rsquared[1]

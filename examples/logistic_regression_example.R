@@ -5,11 +5,6 @@
 ######################################
 
 ## Install packages
-source("https://bioconductor.org/biocLite.R")
-biocLite()
-biocLite("AnnotationHub")
-biocLite("GenomicRanges")
-biocLite("BSgenome.Mmusculus.UCSC.mm10")
 install.packages("caret")
 install.packages("e1071")
 install.packages("ROCR")
@@ -17,62 +12,17 @@ install.packages("ROCR")
 
 ## Initialization
 library(DNAshapeR)
-library(AnnotationHub)
-library(BSgenome.Mmusculus.UCSC.mm10)
-library(GenomicRanges)
 library(caret)
 library(ROCR)
 
-
-## Data retreive
-seqLength <- 30 #500
-sampleSize <- 2000 #42045
-workingPath <- "/Users/test/BISC481/CTCF/"
-
-# Bound (ChIP-seq)
-ah <- AnnotationHub()
-#unique(ah$dataprovider)
-#query(ah, "H3K4me3")
-ctcfPeaks <- ah[["AH28451"]]
-seqlevelsStyle(ctcfPeaks) <- "UCSC"
-getFasta( GR = sample(ctcfPeaks, sampleSize), BSgenome = Mmusculus, width = seqLength, 
-          filename = paste0(workingPath, "bound_30.fa"))
-          
-# Unbound (random regions w/o overlapping)
-chrName <- names(Mmusculus)[1:22]
-chrLength <- seqlengths(Mmusculus)[1:22]
-randomGr <- GRanges()
-
-while ( length(randomGr) < sampleSize )  {
-  tmpChrName <- sample(chrName, 1)
-  tmpChrLength <- chrLength[tmpChrName]
-  tmpGRanges <- GRanges( seqnames = tmpChrName, strand = "+",
-                         IRanges(start = sample(1:tmpChrLength,1), width = seqLength) )
-  if( length(findOverlaps(ctcfPeaks, tmpGRanges)) == 0 ){
-    randomGr <- c( randomGr, tmpGRanges)
-    print(length(randomGr))
-  }else{
-    print(paste(length(randomGr), "overlap"))
-  }
-}
-randomGr
-
-# Overlap checking
-findOverlaps(ctcfPeaks, randomGr)
-
-# Fasta file generation
-getFasta(randomGr, Mmusculus, width = seqLength, 
-         filename = paste0(workingPath, "unbound_30.fa"))
-
-
-## Generate data from classifcation (assign 1 to bound and 0 to non-bound)
+## Generate data for the classifcation (assign Y to bound and N to non-bound)
 # bound
-boundFasta <- readDNAStringSet(paste0(workingPath, "bound_30.fa"))
+boundFasta <- readDNAStringSet(paste0(workingPath, "bound_50.fa"))
 sequences <- paste(boundFasta)
 boundTxt <- data.frame(seq=sequences, isBound="Y")
 
 # non-bound
-nonboundFasta <- readDNAStringSet(paste0(workingPath, "unbound_30.fa"))
+nonboundFasta <- readDNAStringSet(paste0(workingPath, "unbound_50.fa"))
 sequences <- paste(nonboundFasta)
 nonboundTxt <- data.frame(seq=sequences, isBound="N")
 
