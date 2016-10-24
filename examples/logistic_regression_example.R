@@ -15,7 +15,7 @@ biocLite("Biostrings")
 library(DNAshapeR)
 library(caret)
 library(ROCR)
-library(biostrings)
+library(Biostrings)
 workingPath <- "/Users/test/Downloads/BISC481/CTCF/"
 
 ## Generate data for the classifcation (assign Y to bound and N to non-bound)
