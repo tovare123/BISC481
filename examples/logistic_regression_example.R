@@ -27,12 +27,12 @@ workingPath <- "/Users/test/Downloads/BISC481/CTCF/"
 
 ## Generate data for the classifcation (assign Y to bound and N to non-bound)
 # bound
-boundFasta <- readDNAStringSet(paste0(workingPath, "bound.fa"))
+boundFasta <- readDNAStringSet(paste0(workingPath, "bound_30.fa"))
 sequences <- paste(boundFasta)
 boundTxt <- data.frame(seq=sequences, isBound="Y")
 
 # non-bound
-nonboundFasta <- readDNAStringSet(paste0(workingPath, "unbound.fa"))
+nonboundFasta <- readDNAStringSet(paste0(workingPath, "unbound_30.fa"))
 sequences <- paste(nonboundFasta)
 nonboundTxt <- data.frame(seq=sequences, isBound="N")
 
