@@ -1,8 +1,16 @@
 ######################################
-# 01.10.2016
+# 10.02.2019
 # Emsemble plots example
 # BISC 481
 ######################################
+
+## Install packages
+# Bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install()
+# DNAshapeR
+BiocManager::install("DNAshapeR")
 
 # Initialization
 library(DNAshapeR)

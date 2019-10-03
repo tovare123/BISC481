@@ -1,16 +1,18 @@
 ######################################
-# 12.10.2016
+# 10.02.2019
 # Retrieval of ChIP-seq data
 # Generation of bound and unbound data
 # BISC 481
 ######################################
 
 ## Install packages
-source("https://bioconductor.org/biocLite.R")
-biocLite()
-biocLite("AnnotationHub")
-biocLite("GenomicRanges")
-biocLite("BSgenome.Mmusculus.UCSC.mm10")
+# Bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install()
+BiocManager::install("AnnotationHub")
+BiocManager::install("GenomicRanges")
+BiocManager::install("BSgenome.Mmusculus.UCSC.mm10")
 
 
 ## Initialization
@@ -26,8 +28,8 @@ workingPath <- "/Users/test/Downloads/BISC481/CTCF/"
 
 # Bound (ChIP-seq)
 ah <- AnnotationHub()
-#unique(ah$dataprovider)
-#query(ah, "H3K4me3")
+unique(ah$dataprovider)
+query(ah, "H3K4me3")
 ctcfPeaks <- ah[["AH28451"]]
 seqlevelsStyle(ctcfPeaks) <- "UCSC"
 getFasta( GR = sample(ctcfPeaks, sampleSize), BSgenome = Mmusculus, width = seqLength, 
