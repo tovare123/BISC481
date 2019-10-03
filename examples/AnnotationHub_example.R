@@ -1,19 +1,20 @@
 ######################################
-# 01.10.2016
+# 10.02.2019
 # AnnotationHub example
 # BISC 481
 ######################################
 
 ## Install packages
 # Bioconductor
-source("https://bioconductor.org/biocLite.R")
-biocLite()
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install()
 # AnnotationHub
-biocLite("AnnotationHub")
+BiocManager::install("AnnotationHub")
 # rtracklayer (might be required)
-biocLite("rtracklayer")
+BiocManager::install("rtracklayer")
 # Reference genome
-biocLite("BSgenome.Hsapiens.UCSC.hg19")
+BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
 
 ## Initialization
 library(AnnotationHub)
