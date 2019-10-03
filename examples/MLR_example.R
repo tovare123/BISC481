@@ -6,10 +6,11 @@
 
 ## Install packages
 # Bioconductor
-source("https://bioconductor.org/biocLite.R")
-biocLite()
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install()
 # DNAshapeR
-biocLite("DNAshapeR")
+BiocManager::install("DNAshapeR")
 # Caret
 install.packages("caret")
 
@@ -46,3 +47,5 @@ model2 <- train(affinity~., data = df, trControl=trainControl,
                method = "glmnet", tuneGrid = data.frame(alpha = 0, lambda = c(2^c(-15:15))))
 model2
 result <- model2$results$Rsquared[1]
+result
+
