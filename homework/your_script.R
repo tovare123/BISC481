@@ -1,3 +1,4 @@
+#Question 4
 install.packages("BiocManager")
 BiocManager::install()
 BiocManager::install("DNAshapeR")
@@ -92,3 +93,32 @@ ggplot() +
   geom_abline(slope=1) + geom_vline(xintercept=0) + geom_hline(yintercept=0) +
   coord_fixed(ratio = 1, xlim = c(0,1), ylim = c(0,1)) +
   scale_x_continuous(expand = c(0, 0)) + scale_y_continuous(expand = c(0, 0)) 
+
+Question #5
+## Install packages
+# Bioconductor
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install()
+# DNAshapeR
+BiocManager::install("DNAshapeR")
+# Caret
+install.packages("caret")
+
+## Initialization
+library(DNAshapeR)
+library(caret)
+workingPath <- "/Users/lizziliz/Downloads/BISC481-master-4/CTCF/"
+
+# Extract sample sequences
+fn <- system.file("extdata", "CGRsample.fa", package = "DNAshapeR")
+
+# Predict DNA shapes
+pred <- getShape(fn)
+
+# Generate ensemble plots
+## Generate one at a time
+plotShape(pred$MGW)
+plotShape(pred$ProT)
+plotShape(pred$Roll)
+plotShape(pred$HelT)
