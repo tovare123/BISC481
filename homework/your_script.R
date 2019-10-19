@@ -59,6 +59,7 @@ model2
 result <- model2$results$Rsquared[1]
 result
 
+##R squared DATA
 ## MER+SEQUENCE
 #max= 0.8646
 #mad=0.8628
