@@ -97,7 +97,7 @@ ggplot() +
 
 Question #5
 ## Install packages
-# Bioconductor
+# Bioconductor/Press a and then no
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install()
