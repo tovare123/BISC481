@@ -95,9 +95,9 @@ ggplot() +
   coord_fixed(ratio = 1, xlim = c(0,1), ylim = c(0,1)) +
   scale_x_continuous(expand = c(0, 0)) + scale_y_continuous(expand = c(0, 0)) 
 
-Question #5
+##Question 5
 ## Install packages
-# Bioconductor/Press a and then no
+# Bioconductor
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install()
@@ -111,8 +111,8 @@ library(DNAshapeR)
 library(caret)
 workingPath <- "/Users/lizziliz/Downloads/BISC481-master-4/CTCF/"
 
-# Extract sample sequences
-fn <- system.file("extdata", "CGRsample.fa", package = "DNAshapeR")
+# Extract sample sequences from bound data
+fn <- system.file("extdata", "bound_30.fa", package = "DNAshapeR")
 
 # Predict DNA shapes
 pred <- getShape(fn)
@@ -124,7 +124,20 @@ plotShape(pred$ProT)
 plotShape(pred$Roll)
 plotShape(pred$HelT)
 
-Question #6
+# Extract sample sequences from unbound data 
+fn <- system.file("extdata", "unbound_30.fa", package = "DNAshapeR")
+
+# Predict DNA shapes
+pred <- getShape(fn)
+
+# Generate ensemble plots
+## Generate one at a time
+plotShape(pred$MGW)
+plotShape(pred$ProT)
+plotShape(pred$Roll)
+plotShape(pred$HelT)
+
+##Question 6
 ######################################
 # 10.02.2019
 # Logistic regression on ChIP-seq data
