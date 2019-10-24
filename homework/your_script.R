@@ -187,14 +187,6 @@ plotShape(pred$Roll)
 plotShape(pred$HelT)
 
 ##Question 6
-######################################
-# 10.02.2019
-# Logistic regression on ChIP-seq data
-# BISC 481
-######################################
-##no change in workingpath; can simiply enter in data 
-
-
 ## Initialization
 library(DNAshapeR)
 library(caret)
@@ -224,6 +216,33 @@ pred <- getShape(paste0(workingPath, "ctcf.fa"))
 
 ## Encode feature vectors
 featureType <- c("1-mer", "1-shape")
+featureVector <- encodeSeqShape(paste0(workingPath, "ctcf.fa"), pred, featureType)
+df <- data.frame(isBound = exp_data$isBound, featureVector)
+
+
+## Logistic regression
+# Set parameters for Caret
+trainControl <- trainControl(method = "cv", number = 10, 
+                             savePredictions = TRUE, classProbs = TRUE)
+# Perform prediction
+model <- train(isBound~ ., data = df, trControl = trainControl,
+               method = "glm", family = binomial, metric ="ROC")
+summary(model)
+
+## Plot AUROC
+prediction <- prediction( model$pred$Y, model$pred$obs )
+performance <- performance( prediction, "tpr", "fpr" )
+plot(performance)
+
+## Caluculate AUROC
+auc <- performance(prediction, "auc")
+auc <- unlist(slot(auc, "y.values"))
+auc
+
+###########
+
+## Encode feature vectors
+featureType <- c("1-mer")
 featureVector <- encodeSeqShape(paste0(workingPath, "ctcf.fa"), pred, featureType)
 df <- data.frame(isBound = exp_data$isBound, featureVector)
 
